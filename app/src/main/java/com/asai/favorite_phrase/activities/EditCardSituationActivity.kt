@@ -42,7 +42,6 @@ class EditCardSituationActivity : BaseActivity() {
         setupActionBar()
 
         // メイン画面のノートに表示されている情報を持ってくる
-//        var noteDocumentId = ""
         if (intent.hasExtra(Constants.DOCUMENT_ID)) {
             cardDocumentId = intent.getStringExtra(Constants.DOCUMENT_ID)!!
         }
@@ -94,7 +93,7 @@ class EditCardSituationActivity : BaseActivity() {
     }
 
     //　カードの情報を画面に貼り付ける
-    fun setCardDetailsInUI(situation: Situation?) {
+    private fun setCardDetailsInUI(situation: Situation?) {
 
         mSituationDetails = situation!!
 

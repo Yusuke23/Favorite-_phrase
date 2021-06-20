@@ -51,10 +51,10 @@ class FirestoreClass {
 
                 when (activity) {
                     is SignInActivity -> {
-                        activity.signInSuccess(loggedInUser)
+                        activity.signInSuccess()
                     }
                     is MainActivity -> {
-                        activity.updateNavigationUserDetails(loggedInUser, readNotesList)
+                        activity.updateNavigationUserDetails(readNotesList)
                     }
                     is MyAccountActivity -> {
                         activity.setUserDataInUI(loggedInUser)
@@ -167,6 +167,7 @@ class FirestoreClass {
     // firestore に保存されたカードの情報を取得
     fun getCardList(activity: Activity) {
         mFirestore.collection(Constants.CARD_SITUATION)
+            .whereEqualTo(Constants.USER_ID, getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
                 Log.i(activity.javaClass.simpleName, document.documents.toString())

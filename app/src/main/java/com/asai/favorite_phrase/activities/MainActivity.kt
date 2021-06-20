@@ -205,7 +205,7 @@ class MainActivity: BaseActivity(), NavigationView.OnNavigationItemSelectedListe
             })
     }
 
-    fun updateNavigationUserDetails(user: User?, readNotesList: Boolean) {
+    fun updateNavigationUserDetails(readNotesList: Boolean) {
 
         if (readNotesList) {
             showProgressDialog(resources.getString(R.string.please_wait))

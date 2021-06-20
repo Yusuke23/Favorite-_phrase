@@ -46,7 +46,7 @@ class CreateCardPhraseActivity: BaseActivity() {
         binding = ActivityCreateCardPhraseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //todo try CardPhraseActivity から情報を引き継ぐ
+        // CardPhraseActivity から情報を引き継ぐ
         getIntentData()
 
         // アクションバーに戻るボタンを付け、タップで前ページへ戻る
@@ -84,7 +84,7 @@ class CreateCardPhraseActivity: BaseActivity() {
             }
         }
 
-        //todo try label color
+        // label color
         binding.tvCreateColorLabel.setOnClickListener {
             labelColorsListDialog()
         }
@@ -173,7 +173,6 @@ class CreateCardPhraseActivity: BaseActivity() {
         }
         listDialog.show()
     }
-    // todo try label color ここまで
 
     // firebase storage に画像を保存
     private fun uploadNoteImage() {

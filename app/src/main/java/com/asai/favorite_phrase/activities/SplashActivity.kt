@@ -1,7 +1,6 @@
 package com.asai.favorite_phrase.activities
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,10 +27,6 @@ class SplashActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
-
-            // todo フォントを指定
-//            val typeFace = Typeface.createFromAsset(assets, "DancingScript-Bold.ttf")
-//            binding.tvAppName.typeface = typeFace
 
             // 自動で次の画面へ遷移
             Handler().postDelayed({

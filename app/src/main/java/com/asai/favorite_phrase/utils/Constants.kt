@@ -10,6 +10,7 @@ object Constants {
 
     const val USERS: String = "users"
     const val NAME: String = "name"
+    const val USER_ID: String = "userId"
     const val IMAGE: String = "image"
     const val IMAGE_SITUATION: String = "imageSituation"
     const val CARD_SITUATION: String = "cardSituation"

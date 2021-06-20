@@ -29,8 +29,7 @@ class LabelColorListItemsAdapter (private val context: Context,
 
     override fun onBindViewHolder(holder: MyLabelColorListItemsViewHolder, position: Int) {
         val item = list[position]
-        if (holder is MyLabelColorListItemsViewHolder)
-            holder.binding.viewMain.setBackgroundColor(Color.parseColor(item))
+        holder.binding.viewMain.setBackgroundColor(Color.parseColor(item))
         if (item == mSelectedColor) {
             holder.binding.ivSelectedColor.visibility = View.VISIBLE
         } else {

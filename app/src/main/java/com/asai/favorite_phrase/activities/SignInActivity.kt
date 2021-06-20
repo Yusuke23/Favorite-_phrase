@@ -103,7 +103,7 @@ class SignInActivity : BaseActivity() {
         }
     }
 
-    fun signInSuccess(user: com.asai.favorite_phrase.models.User?) {
+    fun signInSuccess() {
         hideProgressDialog()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
