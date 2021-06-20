@@ -29,9 +29,9 @@ class SplashActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
 
-            // フォントを指定
-            val typeFace = Typeface.createFromAsset(assets, "DancingScript-Bold.ttf")
-            binding.tvAppName.typeface = typeFace
+            // todo フォントを指定
+//            val typeFace = Typeface.createFromAsset(assets, "DancingScript-Bold.ttf")
+//            binding.tvAppName.typeface = typeFace
 
             // 自動で次の画面へ遷移
             Handler().postDelayed({

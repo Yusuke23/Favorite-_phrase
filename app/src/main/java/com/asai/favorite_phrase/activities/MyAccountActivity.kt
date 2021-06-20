@@ -1,16 +1,11 @@
 package com.asai.favorite_phrase.activities
 
-import android.Manifest
 import android.app.Activity
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import com.asai.favorite_phrase.R
 import com.asai.favorite_phrase.databinding.ActivityMyAccountBinding
 import com.asai.favorite_phrase.firebase.FirestoreClass
@@ -18,7 +13,6 @@ import com.asai.favorite_phrase.models.User
 import com.asai.favorite_phrase.utils.Constants
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.io.IOException
 
 class MyAccountActivity : BaseActivity() {
 
@@ -38,23 +32,6 @@ class MyAccountActivity : BaseActivity() {
         setupActionBar()
 
         FirestoreClass().loadUserData(this)
-
-        // デバイスの permission の状態を確認
-        binding.ivProfileUserImage.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.READ_EXTERNAL_STORAGE
-                )
-                == PackageManager.PERMISSION_GRANTED
-            ) {
-                Constants.showImageChooser(this)
-            } else {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    Constants.READ_STORAGE_PERMISSION_CODE
-                )
-            }
-        }
 
         // UPDATEボタンを押した時、画像をアップロードする
         binding.btnUpdate.setOnClickListener {
@@ -109,13 +86,6 @@ class MyAccountActivity : BaseActivity() {
     fun setUserDataInUI(user: User?) {
 
         mUserDetails = user!!
-
-        Glide
-            .with(this)
-            .load(user.image)
-            .centerCrop()
-            .placeholder(R.drawable.ic_user_place_holder)
-            .into(binding.ivProfileUserImage)
 
         binding.etName.setText(user.name)
         binding.etEmail.setText(user.email)
@@ -182,26 +152,4 @@ class MyAccountActivity : BaseActivity() {
         FirestoreClass().updateUserAccountData(this, userHashMap)
     }
 
-    // 選択した画像を画面に表示
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        // 選択した画像を画面に表示
-        if (resultCode == Activity.RESULT_OK
-            && requestCode == Constants.PICK_IMAGE_REQUEST_CODE
-            && data!!.data != null
-        ) {
-            mSelectedImageFileUri = data.data
-
-            try {
-                Glide
-                    .with(this@MyAccountActivity)
-                    .load(mSelectedImageFileUri)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_user_place_holder)
-                    .into(binding.ivProfileUserImage)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-    }
 }

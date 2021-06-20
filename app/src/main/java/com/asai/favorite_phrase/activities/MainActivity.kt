@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.bumptech.glide.Glide
 import com.asai.favorite_phrase.R
 import com.asai.favorite_phrase.adapters.CardSituationAdapter
 import com.asai.favorite_phrase.databinding.ActivityMainBinding
@@ -207,13 +206,6 @@ class MainActivity: BaseActivity(), NavigationView.OnNavigationItemSelectedListe
     }
 
     fun updateNavigationUserDetails(user: User?, readNotesList: Boolean) {
-
-        Glide
-            .with(this)
-            .load(user!!.image)
-            .centerCrop()
-//            .placeholder(R.drawable.ic_user_place_holder)
-            .into(binding.iNavHeaderMain.navUserImage)
 
         if (readNotesList) {
             showProgressDialog(resources.getString(R.string.please_wait))
