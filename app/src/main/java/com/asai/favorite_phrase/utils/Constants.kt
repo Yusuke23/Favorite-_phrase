@@ -9,9 +9,7 @@ import android.webkit.MimeTypeMap
 object Constants {
 
     const val USERS: String = "users"
-    const val NAME: String = "name"
     const val USER_ID: String = "userId"
-    const val IMAGE: String = "image"
     const val IMAGE_SITUATION: String = "imageSituation"
     const val CARD_SITUATION: String = "cardSituation"
     const val SITUATION: String = "situation"
@@ -19,7 +17,7 @@ object Constants {
     const val PHRASE_LIST: String = "phraseList"
     const val CARD_DETAIL: String = "card_detail"
     const val DOCUMENT_ID: String = "documentId"
-    const val IOENGLISH_PREFERENCES = "IOEnglishPrefs"
+    const val FAVORITE_PHRASE_PREFERENCES = "FavoritePhrasePrefs"
     const val READ_STORAGE_PERMISSION_CODE = 1
     const val PICK_IMAGE_REQUEST_CODE = 2
 

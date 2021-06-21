@@ -59,12 +59,11 @@ class SignUpActivity : BaseActivity() {
 
     // name email password の情報とともにユーザー登録する
     private fun registerUser() {
-        val name: String = binding.etNameSignup.text.toString().trim { it <= ' ' }
         val email: String = binding.etEmailSignup.text.toString().trim { it <= ' ' }
         val password: String = binding.etPasswordSignup.text.toString().trim { it <= ' ' }
 
         // 記入情報のチェックの間に表示されるダイアログ
-        if (validateForm(name, email, password)) {
+        if (validateForm(email, password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -74,7 +73,7 @@ class SignUpActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
                         val registeredEmail = firebaseUser.email!!
-                        val user = User(firebaseUser.uid, name, registeredEmail)
+                        val user = User(firebaseUser.uid, registeredEmail)
 
                         FirestoreClass().registerUser(this, user)
                     } else {
@@ -85,13 +84,9 @@ class SignUpActivity : BaseActivity() {
         }
     }
 
-    // 必要事項が正確されているかチェック
-    private fun validateForm(name: String, email: String, password: String): Boolean {
+    // 必要事項が正確に記入されているかチェック
+    private fun validateForm(email: String, password: String): Boolean {
         return when {
-            TextUtils.isEmpty(name) -> {
-                showErrorSnackBar("Please enter a name")
-                false
-            }
             TextUtils.isEmpty(email) -> {
                 showErrorSnackBar("Please enter an email")
                 false

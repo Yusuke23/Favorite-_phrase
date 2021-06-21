@@ -60,7 +60,7 @@ class MainActivity: BaseActivity(), NavigationView.OnNavigationItemSelectedListe
         binding.navView.setNavigationItemSelectedListener(this)
 
         mSharedPreferences = this.getSharedPreferences(
-            Constants.IOENGLISH_PREFERENCES, Context.MODE_PRIVATE
+            Constants.FAVORITE_PHRASE_PREFERENCES, Context.MODE_PRIVATE
         )
 
         swipeToShowEditButton()

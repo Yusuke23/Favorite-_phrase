@@ -1,18 +1,25 @@
 package com.asai.favorite_phrase.firebase
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.nfc.Tag
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.asai.favorite_phrase.activities.*
 import com.asai.favorite_phrase.models.Situation
 import com.asai.favorite_phrase.models.User
 import com.asai.favorite_phrase.utils.Constants
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
+
 class FirestoreClass {
 
+    val mTag = "delete"
     private val mFirestore = FirebaseFirestore.getInstance()
 
     // ユーザー情報を firestore に保存
@@ -330,5 +337,40 @@ class FirestoreClass {
                 )
             }
     }
+
+    //todo ok auth のデータが消えた
+    fun deleteAccount(context: Context) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        currentUser!!.delete().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d(mTag, "OK! Works fine!")
+                Toast.makeText(
+                    context,
+                    "OK! Deleted successfully!\nアカウントを削除しました。",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(
+                context,
+                "Error: Account didn't delete.\n削除に失敗しました。ネット環境をご確認ください。",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    fun deleteUserData() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        mFirestore.collection(Constants.USERS)
+            .document(currentUser!!.uid)
+            .delete()
+            .addOnSuccessListener { document ->
+                Log.i(mTag, "user data delete successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e(mTag, "Error while deleting a card situation.", e)
+            }
+    }
+
 
 }

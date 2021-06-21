@@ -21,7 +21,7 @@
     <string name="text_view_search_here">  Search here…</string>
 
     <!--    activity_my_account-->
-    <string name="update">UPDATE</string>
+    <string name="delete_account">DELETE ACCOUNT\nアカウントの削除</string>
     <string name="my_account_title">My account</string>
     <!--    nav_header_main-->
     <string name="image_contentDescription">image</string>
@@ -31,11 +31,11 @@
     <string name="nav_sign_out">Sign Out</string>
     <string name="nav_tag_name">tags</string>
     <!--    activity_sign_up & activity_sign_in-->
-    <string name="sign_up_description_text">Enter your name, email id and password, to register with us.</string>
+    <string name="sign_up_description_text">Enter your email and password, to register with us.</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
-    <string name="sign_in_description_text">Enter your name, email id and password, to register with us.</string>
+    <string name="sign_in_description_text">Enter your email and password, to sign in.</string>
     <!--    base_activity-->
     <string name="please_click_back_again_to_exit">Please click back again to exit.</string>
     <!--    dialog_progress-->

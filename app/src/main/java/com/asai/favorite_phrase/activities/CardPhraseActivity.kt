@@ -48,7 +48,6 @@ class CardPhraseActivity: BaseActivity(), TextToSpeech.OnInitListener {
     private val sttTag = "RecognitionListener"
     private var tts: TextToSpeech? = null
     var swipeController: SwipeController? = null
-    private lateinit var mSharedPreferences: SharedPreferences
 
     companion object {
         const val CREATE_CARD_PHRASE_REQUEST_CODE: Int = 21 // ノートを新しく作った時、メイン画面のリロード用
@@ -84,10 +83,6 @@ class CardPhraseActivity: BaseActivity(), TextToSpeech.OnInitListener {
 
         // text to speech
         tts = TextToSpeech(this, this)
-
-        mSharedPreferences = this.getSharedPreferences(
-            Constants.IOENGLISH_PREFERENCES, Context.MODE_PRIVATE
-        )
 
         showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass().getCardDetails(this, mCardDocumentId)
