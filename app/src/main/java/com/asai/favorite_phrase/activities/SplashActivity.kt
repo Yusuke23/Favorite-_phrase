@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.asai.favorite_phrase.databinding.ActivitySplashBinding
@@ -22,24 +23,30 @@ class SplashActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
+
+            pageTransition()
         } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
 
-            // 自動で次の画面へ遷移
-            Handler().postDelayed({
-
-                // 一度サインアップをしているユーザーは自動ログインされる
-                val currentUserID = FirestoreClass().getCurrentUserId()
-                    if (currentUserID.isNotEmpty()) {
-                        startActivity(Intent(this, MainActivity::class.java))
-                    } else {
-                        startActivity(Intent(this, IntroActivity::class.java))
-                    }
-                finish()
-            }, 500)
+            pageTransition()
         }
+    }
+
+    private fun pageTransition() {
+        // 自動で次の画面へ遷移
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            // 一度サインアップをしているユーザーは自動ログインされる
+            val currentUserID = FirestoreClass().getCurrentUserId()
+            if (currentUserID.isNotEmpty()) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, IntroActivity::class.java))
+            }
+            finish()
+        }, 500)
     }
 }
